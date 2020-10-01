@@ -1,3 +1,5 @@
+# coding: utf-8
+
 import numpy as np
 
 dW1 = np.random.rand(3, 3) * 10

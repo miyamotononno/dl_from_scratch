@@ -1,3 +1,5 @@
+# coding: utf-8
+
 import numpy as np
 from common.base_model import BaseModel
 from common.functions import softmax
