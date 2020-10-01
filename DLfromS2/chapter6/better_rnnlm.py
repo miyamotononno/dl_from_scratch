@@ -10,7 +10,7 @@ from common.config import GPU
 
 from common.optimizer import SGD
 from common.base_model import BaseModel
-from common.time_layers import TimeAffine, TimeDropout, TimeEmedding, TimeSoftmaxWithLoss
+from common.time_layers import TimeAffine, TimeDropout, TimeEmbedding, TimeSoftmaxWithLoss
 from common.trainer import RNNlmTrainer
 from common.util import eval_perplexity
 from dataset import ptb
@@ -39,7 +39,7 @@ class BetterRnnlm(BaseModel):
 
     # 3つの改善
     self.layers = [
-      TimeEmedding(embed_W),
+      TimeEmbedding(embed_W),
       TimeDropout(dropout_ratio),
       TimeLSTM(lstm_Wx1, lstm_Wh1, lstm_b1, stateful=True),
       TimeDropout(dropout_ratio),

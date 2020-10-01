@@ -39,7 +39,7 @@ class TimeAffine(BaseModel):
     return dx
 
 
-class TimeEmedding(BaseModel):
+class TimeEmbedding(BaseModel):
   def __init__(self, W):
     self.params = [W]
     self.grads = [np.zeros_like(W)]

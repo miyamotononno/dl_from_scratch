@@ -1,16 +1,18 @@
 # coding: utf-8
 
+import os
 import sys
 sys.path.append('..')
 import numpy as np
 import pickle
 
 from common.optimizer import SGD
-from common.time_layers import TimeEmedding, TimeAffine, TimeSoftmaxWithLoss
+from common.time_layers import TimeEmbedding, TimeAffine, TimeSoftmaxWithLoss
 from common.trainer import RNNlmTrainer
 from common.util import eval_perplexity
 from dataset import ptb
-from lstm import TimeLSTM
+
+from chapter6.lstm import TimeLSTM
 
 
 class Rnnlm:
@@ -28,7 +30,7 @@ class Rnnlm:
 
     # レイヤの生成
     self.layers = [
-      TimeEmedding(embed_W),
+      TimeEmbedding(embed_W),
       TimeLSTM(lstm_Wx, lstm_Wh, lstm_b, stateful=True),
       TimeAffine(affine_W, affine_b)
     ]
@@ -67,8 +69,11 @@ class Rnnlm:
       pickle.dump(self.params, f)
 
   def load_params(self, file_name='RNNlm.pkl'):
-    with open(file_name, 'wb') as f:
-      self.params = pickle.load(f)
+    if os.path.getsize(file_name) > 0:
+      with open(file_name, 'rb') as f:
+        self.params = pickle.load(f)
+    else:
+      print("========= this file is empty!! ==========")
 
 
 

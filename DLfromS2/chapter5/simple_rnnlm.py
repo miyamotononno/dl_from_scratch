@@ -7,7 +7,7 @@ import matplotlib.pyplot as plt
 from common.optimizer import SGD
 from dataset import ptb
 from rnn import TimeRNN
-from common.time_layers import TimeAffine, TimeEmedding, TimeSoftmaxWithLoss
+from common.time_layers import TimeAffine, TimeEmbedding, TimeSoftmaxWithLoss
 
 class SimpleRNNlm:
   def __init__(self, vocab_size, wordvec_size, hidden_size):
@@ -24,7 +24,7 @@ class SimpleRNNlm:
 
     # レイヤの生成
     self.layers = [
-      TimeEmedding(embed_W),
+      TimeEmbedding(embed_W),
       TimeRNN(rnn_Wx, rnn_Wh, rnn_b, stateful=True),
       TimeAffine(affine_W, affine_b)
     ]
