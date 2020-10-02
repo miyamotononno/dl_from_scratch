@@ -2,9 +2,14 @@
 import sys
 sys.path.append('..')
 import numpy as np
-from chapter6.rnnlm_gen import BetterRnnlmGen
+from rnnlm_gen import RnnlmGen as BetterRnnlmGen
 from dataset import ptb
 
+def get_perplexity(model):
+    from common.util import eval_perplexity
+    corpus_val, _, _ = ptb.load_data('val')
+    ppl = eval_perplexity(model, corpus_val)
+    return ppl
 
 corpus, word_to_id, id_to_word = ptb.load_data('train')
 vocab_size = len(word_to_id)
@@ -13,6 +18,8 @@ corpus_size = len(corpus)
 
 model = BetterRnnlmGen()
 model.load_params('../chapter6/BetterRnnlm.pkl')
+
+# print(get_perplexity(model))
 
 # start文字とskip文字の設定
 start_word = 'you'

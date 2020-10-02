@@ -95,7 +95,7 @@ def eval_perplexity(model, corpus, batch_size=10, time_size=35):
     ppl = np.exp(total_loss / max_iters)
     return ppl
 
-def eval_seq2seq(model, question, correct, id_to_char, verbose, is_reverse=False):
+def eval_seq2seq(model, question, correct, id_to_char, verbose=False, is_reverse=False):
     correct = correct.flatten()
     # 頭の区切り文字
     start_id = correct[0]
