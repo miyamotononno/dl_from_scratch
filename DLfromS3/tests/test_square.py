@@ -14,5 +14,5 @@ class SquareTest(unittest.TestCase):
     expected = np.array(4.0)
     self.assertEqual(y.data, expected)
 
-# square.py
-unittest.main()
+if __name__ == "__main__":
+  unittest.main()

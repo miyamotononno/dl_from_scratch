@@ -1,6 +1,6 @@
 # coding: utf-8
 import numpy as np
-from common.baseclass import Square, Exp, Add
+from common.classes import Square, Exp, Add
 
 def square(x):
   return Square()(x)
