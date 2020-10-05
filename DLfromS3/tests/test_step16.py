@@ -1,11 +1,11 @@
 # coding: utf-8
+if '__file__' in globals():
+  import os, sys
+  sys.path.append(os.path.join(os.path.dirname(__file__), '..'))
 
-import sys
-sys.path.append('..')
-import unittest
 import numpy as np
-from common.baseclass import Variable
-from common.funcs import square, add
+import unittest
+from dezero import Variable, square, add
 
 class Step16Test(unittest.TestCase):
   def test_backward(self):

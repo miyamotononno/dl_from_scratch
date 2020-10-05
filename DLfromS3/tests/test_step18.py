@@ -1,11 +1,11 @@
 # coding: utf-8
-import sys
-sys.path.append('..')
+if '__file__' in globals():
+  import os, sys
+  sys.path.append(os.path.join(os.path.dirname(__file__), '..'))
+
 import numpy as np
 import unittest
-from common.config import Config, no_grad
-from common.baseclass import Variable
-from common.funcs import square, add
+from dezero import Variable, square, Config, no_grad
 
 class Step18Test(unittest.TestCase):
   def test_config(self):

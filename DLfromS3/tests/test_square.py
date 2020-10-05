@@ -1,11 +1,11 @@
 # coding: utf-8
+if '__file__' in globals():
+  import os, sys
+  sys.path.append(os.path.join(os.path.dirname(__file__), '..'))
 
-import sys
-sys.path.append('..')
-import unittest
 import numpy as np
-from common.baseclass import Variable
-from common.funcs import square
+import unittest
+from dezero import Variable, square
 
 class SquareTest(unittest.TestCase):
   def test_forward(self):
