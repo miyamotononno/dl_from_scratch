@@ -8,4 +8,6 @@ if is_simple_core:
 else:
   from dezero.core import (Variable, Function, using_config, no_grad, Config,
                            as_array, as_variable, setup_variable)
+  import dezero.functions
+  import dezero.utils
 setup_variable()
