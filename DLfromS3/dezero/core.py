@@ -180,10 +180,9 @@ class Mul(Function):
     x0, x1 = self.inputs
     gx0=gy*x1
     gx1=gy*x0
-    if self.x0_shape != self.x1_shape:
-      from dezero import functions
-      gx0 = functions.sum_to(gx0, self.x0_shape)
-      gx1 = functions.sum_to(gx1, self.x1_shape)
+    if x0.shape != x1.shape:
+      gx0 = dezero.functions.sum_to(gx0, x0.shape)
+      gx1 = dezero.functions.sum_to(gx1, x1.shape)
     return gx0, gx1
 
 def mul(x0, x1):
@@ -209,9 +208,8 @@ class Sub(Function):
     gx0 = gy
     gx1 = -gy
     if self.x0_shape != self.x1_shape:
-      from dezero import functions
-      gx0 = functions.sum_to(gx0, self.x0_shape)
-      gx1 = functions.sum_to(gx1, self.x1_shape) 
+      gx0 = dezero.functions.sum_to(gx0, self.x0_shape)
+      gx1 = dezero.functions.sum_to(gx1, self.x1_shape) 
     return gx0, gx1
 
 def sub(x0, x1):
