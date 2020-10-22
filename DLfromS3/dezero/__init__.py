@@ -7,7 +7,9 @@ if is_simple_core:
 
 else:
   from dezero.core import (Variable, Function, using_config, no_grad, Config,
-                           as_array, as_variable, setup_variable)
+                           as_array, as_variable, setup_variable, Parameter)
   import dezero.functions
   import dezero.utils
+  from dezero.layers import Layer
+  from dezero.models import Model
 setup_variable()

@@ -257,6 +257,9 @@ class Pow(Function):
 def dezero_pow(x, c):
   return Pow(c)(x)
 
+class Parameter(Variable):
+  pass
+
 def setup_variable():
   """以下、演算子のオーバーロードを行う。詳しくはstep20-22参照"""
   Variable.__add__ = add
