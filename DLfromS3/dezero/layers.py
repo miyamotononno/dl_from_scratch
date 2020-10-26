@@ -19,7 +19,7 @@ class Layer:
     if not isinstance(outputs, tuple):
       outputs = (outputs, )
     self.inputs = [weakref.ref(x) for x in inputs]
-    self.outputs = [weakref.ref(x) for x in outputs]
+    self.outputs = [weakref.ref(y) for y in outputs]
     return outputs if len(outputs) > 1 else outputs[0]
 
   def forward(self, inputs):
@@ -27,7 +27,8 @@ class Layer:
 
   def params(self):
     for name in self._params:
-      obj = self.__dict__[name] 
+      obj = self.__dict__[name]
+
       if isinstance(obj, Layer):
         yield from obj.params() # 再帰的にパラメータを呼び出す。
       else:

@@ -10,6 +10,7 @@ else:
                            as_array, as_variable, setup_variable, Parameter)
   import dezero.functions
   import dezero.utils
+  import dezero.datasets
   from dezero.layers import Layer
   from dezero.models import Model
   from dezero import optimizers

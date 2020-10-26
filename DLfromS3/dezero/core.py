@@ -260,6 +260,35 @@ def dezero_pow(x, c):
 class Parameter(Variable):
   pass
 
+class GetItem(Function):
+  def __init__(self, slices):
+    self.slices = slices
+
+  def forward(self, x):
+    y = x[self.slices]
+    return y
+
+  def backward(self, gy):
+    x, = self.inputs
+    f = GetItemGrad(self.slices, x.shape)
+    return f(gy)
+
+def get_item(x, slices):
+  return GetItem(slices)(x)
+
+class GetItemGrad(Function):
+  def __init__(self, slices, in_shape):
+    self.slices = slices
+    self.in_shape = in_shape
+
+  def forward(self, gy):
+    gx = np.zeros(self.in_shape)
+    np.add.at(gx, self.slices, gy)
+    return gx
+
+  def backward(self, ggx):
+    return get_item(ggx, self.slices)
+
 def setup_variable():
   """以下、演算子のオーバーロードを行う。詳しくはstep20-22参照"""
   Variable.__add__ = add
@@ -272,3 +301,7 @@ def setup_variable():
   Variable.__truediv__ = div
   Variable.__rtruediv__ = rdiv
   Variable.__pow__ = dezero_pow
+  Variable.__getitem__ = get_item
+
+  Variable.max = dezero.functions.max
+  Variable.min = dezero.functions.min
