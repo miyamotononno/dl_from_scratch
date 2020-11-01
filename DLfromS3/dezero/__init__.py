@@ -9,9 +9,12 @@ else:
   from dezero.core import (Variable, Function, using_config, no_grad, Config,
                            as_array, as_variable, setup_variable, Parameter)
   import dezero.functions
+  import dezero.optimizers
   import dezero.utils
   import dezero.datasets
   from dezero.layers import Layer
   from dezero.models import Model
-  from dezero import optimizers
+  from dezero.dataloaders import DataLoader 
+  
+
 setup_variable()
