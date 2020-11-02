@@ -1,6 +1,6 @@
 
 import numpy as np
-from dezero.core import Function, as_variable
+from dezero.core import Function, as_variable, Config
 from dezero import utils, Variable
 
 class Sin(Function):
@@ -339,3 +339,14 @@ class ReLu(Function):
 
 def relu(x):
   return ReLu()(x)
+
+def dropout(x, dropout_ratio=0.6):
+  x = as_variable(x)
+
+  if Config.train:
+    mask = np.random.randn(*x.shape) > dropout_ratio
+    scale = np.array(1.0 - dropout_ratio).astype(x.dtype)
+    y = x *mask / scale
+    return y
+  else:
+    return x

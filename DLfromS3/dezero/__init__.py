@@ -6,8 +6,9 @@ if is_simple_core:
                                   as_array, as_variable, setup_variable, add)
 
 else:
-  from dezero.core import (Variable, Function, using_config, no_grad, Config,
-                           as_array, as_variable, setup_variable, Parameter)
+  from dezero.core import (Variable, Function, using_config,
+                           no_grad, Config, as_array, as_variable,
+                           setup_variable, Parameter, test_mode)
   import dezero.functions
   import dezero.optimizers
   import dezero.utils
